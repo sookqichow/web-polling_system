@@ -1,0 +1,125 @@
+
+.header img {
+    margin-left:40px;
+    margin-top:20px;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #555;
+  }
+  
+.header h1 {
+    position: relative;
+    top: 45px;
+    left: 40px;
+  }
+
+.form-container-reg{
+    max-width:600px;
+    margin: auto;
+}
+
+.w3-theme {color:#fff !important; background-color:#015fab !important}
+.w3-theme-1 {color:#000 !important; background-color:#01b9f6 !important}
+.w3-theme-2 {color:#000 !important; background-color:#8ea7c9 !important}
+
+.topnav {
+    overflow: hidden;
+    background-color: #015fab;
+    color:#fff;
+  }
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+.topnav a:hover {
+    background-color: #8ea7c9;
+    color: black;
+  }
+
+
+.topnav-right {
+    float: right;
+  }
+
+.w3-grid-template {
+    display: grid;
+        grid-template-columns: repeat(5, 1fr);
+}
+
+hr {
+    margin: 0em;
+    border-width: 2px;
+}
+
+.active {
+    background:red;
+  }
+  /* #container {
+    visibility: hidden;
+} */
+
+.e-btn-group {
+  margin: 15px 5px 20px 100px;
+}
+.radio-label {
+    display: inline-block;
+     vertical-align: top;
+     margin-right: 3%;
+ }
+ .radio-input {
+    display: inline-block;
+     vertical-align: top;
+ }
+
+ body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+@media screen and (max-width: 1000px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .resimg {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .resimg {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .resimg {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .resimg {
+        width: 100%;
+    }
+}

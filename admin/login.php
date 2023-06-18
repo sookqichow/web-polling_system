@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body onload="loadCookies()">
-    <header class="w3-header w3-theme w3-center w3-padding-32">
+    <header class="w3-header w3-theme w3-center w3-padding-32 " >
         <h3>U-Vote</h3>
         <p>Admin Login Page</p>
     </header>
@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
-    <div class="w3-center w3-bottom w3-theme" style="max-width:1500px;margin:0 auto;">U-Vote</div>
+    <div class="w3-center w3-bottom w3-theme" style="max-width:1800px;margin:0 auto;">U-Vote</div>
 
 </body>
 <script>

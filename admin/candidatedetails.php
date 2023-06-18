@@ -189,7 +189,7 @@ function subString($str)
             // echo "<button class=' w3-theme-2 w3-round w3-block'><a href='coursedetails.php?subject_id=$candidate_id'>View Details</a></button>
             // </div>";
         }
-        echo "<div class='w3-padding w3-center'><img class='w3-image resimg' src=images/candidates/1/$candidate_id.png" .
+        echo "<div class='w3-padding w3-center'><img class='w3-image resimg' src=images/candidates/$school_id/$candidate_id.png" .
             " onerror=this.onerror=null;this.src='/mytutor/admin/res/images/users/user.png'"
             . " style='width:50%;height:500px'></div><hr>";
         echo "<div class='w3-container w3-padding-large'><h4><b>$candidate_name</b></h4>";

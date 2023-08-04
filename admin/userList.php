@@ -9,52 +9,37 @@ if (isset($_SESSION['sessionid'])) {
 $conn = mysqli_connect("localhost", "root", "", "web-polling_system");
 if (isset($_GET['submit'])) {
     $operation = $_GET['submit'];
-    if ($operation == 'delete') {
-        $candidate_id = $_GET['candidate_id'];
-        $sqldeletecandidate = "DELETE FROM tbl_candidates WHERE candidate_id = '$candidate_id'";
-        $sqlgetschoolid = "SELECT school_id FROM tbl_candidates WHERE candidate_id = '$candidate_id'";
-        $result = mysqli_query($conn, $sqlgetschoolid);
-while ($row = mysqli_fetch_array($result)) 
-{
-    $text = $row['school_id'];  
-    if( $text=="1"){
-        $sqldeletesbmcandidate = "DELETE FROM `tbl_sbmcandidates` WHERE candidate_id = '$candidate_id'";
-        mysqli_query($conn, $sqldeletesbmcandidate);
-        }else if($text=="2"){
-            $sqldeleteibscandidate = "DELETE FROM `tbl_ibscandidates` WHERE candidate_id = '$candidate_id'";
-            mysqli_query($conn, $sqldeleteibscandidate);
-            }else if($text=="3"){
-                $sqldeletescimpacandidate = "DELETE FROM `tbl_scimpacandidates` WHERE candidate_id = '$candidate_id'";
-                mysqli_query($conn, $sqldeletescimpacandidate);
-                }else if($text=="4"){
-                    $sqldeletesoecandidate = "DELETE FROM `tbl_soecandidates` WHERE candidate_id = '$candidate_id'";
-                    mysqli_query($conn, $sqldeletesoecandidate);
-                    }else if($text=="5"){
-                        $sqldeletesogcandidate = "DELETE FROM `tbl_sogcandidates` WHERE candidate_id = '$candidate_id'";
-                        mysqli_query($conn, $sqldeletesogcandidate);
-                        }else if($text=="6"){
-                            $sqldeletesoiscandidate = "DELETE FROM `tbl_soiscandidates` WHERE candidate_id = '$candidate_id'";
-                            mysqli_query($conn, $sqldeletesoiscandidate);
-                            }else if($text=="7"){
-                                $sqldeletesolcandidate = "DELETE FROM `tbl_solcandidates` WHERE candidate_id = '$candidate_id'";
-                                mysqli_query($conn, $sqldeletesolcandidate);
-                                }
-    }
-        mysqli_query($conn, $sqldeletecandidate);
+    if($operation == 'verify') {
+        $matric_no = $_GET['matric_no'];
+            $sqlverifyuser = "UPDATE tbl_users SET user_status = 'Verified' WHERE matric_no = '$matric_no'";
+            mysqli_query($conn, $sqlverifyuser);
         // $conn->exec($sqldeletecandidate);
-        echo "<script>alert('Candidate deleted')</script>";
-        echo "<script>window.location.replace('vote.php')</script>";
+        echo "<script>alert('User is verified')</script>";
+        echo "<script>window.location.replace('userList.php')</script>";
     }else {
-        echo "<script>alert('Delete candidate unsuccessful.')</script>";
+        echo "<script>alert('Verify user unsuccessful.')</script>";
     
     }
+    if ($operation == 'delete') {
+        $matric_no = $_GET['matric_no'];
+        $sqldeleteuser = "DELETE FROM tbl_users WHERE matric_no = '$matric_no'";
+        mysqli_query($conn, $sqldeleteuser);
+        // $conn->exec($sqldeletecandidate);
+        echo "<script>alert('User deleted')</script>";
+        echo "<script>window.location.replace('userList.php')</script>";
+    }else {
+        echo "<script>alert('Delete user unsuccessful.')</script>";
+    
+    }
+    
     if ($operation == 'search') {
         $search = $_GET['search'];
-            $sqlcandidate = "SELECT * FROM tbl_candidates WHERE candidate_name LIKE '%$search%'";
+            $sqluser = "SELECT * FROM tbl_users WHERE user_name LIKE '%$search%'";
 
     }
+    
 } else {
-    $sqlcandidate = "SELECT * FROM tbl_candidates";
+    $sqluser = "SELECT * FROM tbl_users";
 }
 // if (isset($_POST['submit'])) {
 //     if(isset($_GET['subscribe'])) {
@@ -115,13 +100,13 @@ if (isset($_GET['pageno'])) {
 }
 
 
-$stmt = $conn->prepare($sqlcandidate);
+$stmt = $conn->prepare($sqluser);
 $stmt->execute();
 $stmt->store_result();
 $number_of_result = $stmt->num_rows;
 $number_of_page = ceil($number_of_result / $results_per_page);
-$sqlcandidate = $sqlcandidate . " LIMIT $page_first_result , $results_per_page";
-$stmt = $conn->prepare($sqlcandidate);
+$sqluser = $sqluser . " LIMIT $page_first_result , $results_per_page";
+$stmt = $conn->prepare($sqluser);
 $stmt->execute();
 $result = $stmt->get_result();
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -152,8 +137,6 @@ function subString($str)
     <link href="//cdn.syncfusion.com/ej2/21.2.3/ej2-popups/styles/material.css" rel="stylesheet" />
     <link href="//cdn.syncfusion.com/ej2/21.2.3/ej2-splitbuttons/styles/material.css" rel="stylesheet" />
     <script src="scripts/login.js" defer></script>
-    <script src="scripts/votechart2.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <title>Welcome to Web-Polling System UUM MPP</title>
 </head>
 <body>
@@ -184,81 +167,77 @@ function subString($str)
 
     <div class="w3-theme-2">
         <button onclick="w3_open()" class="w3-button w3-right w3-hide-large w3-hide-medium">☰</button>
-        
-    </div>
-    <div class="w3-row w3-margin w3-padding">
-  <div class="w3-half w3-container ">
-  <canvas id="sbm" style="width:100%;max-width:700px"></canvas>
-  </div>
-  <div class="w3-half w3-container">
-  <canvas id="ibs" style="width:100%;max-width:700px"></canvas>
-  </div>
-</div>
-
-<div class="w3-row w3-margin w3-padding">
-  <div class="w3-half w3-container ">
-  <canvas id="scimpa" style="width:100%;max-width:700px"></canvas>
-  </div>
-  <div class="w3-half w3-container">
-  <canvas id="soe" style="width:100%;max-width:700px"></canvas>
-  </div>
-</div>
-
-<div class="w3-row w3-margin w3-padding">
-  <div class="w3-half w3-container ">
-  <canvas id="sog" style="width:100%;max-width:700px"></canvas>
-  </div>
-  <div class="w3-half w3-container">
-  <canvas id="sois" style="width:100%;max-width:700px"></canvas>
-  </div>
-</div>
-
-<div class="w3-row w3-margin w3-padding">
-  <div class="w3-half w3-container ">
-  <canvas id="sol" style="width:100%;max-width:700px"></canvas>
-  </div>
-</div>
     
 
-    <!-- <div class="w3-margin w3-border" style="overflow-x:auto;">
+    <div class="w3-margin w3-border" style="overflow-x:auto;">
         <?php
-        // $i = 0;
-        // echo "<table class='w3-table w3-striped w3-bordered' style='width:100%'>
-        //  <tr><th style='width:7%'>Candidate ID</th><th style='width:15%'>Candidate Name</th><th style='width:40%'>Candidate Manifesto</th><th style='width:7%'>School ID</th><th style='width:25%'>School Name</th><th>Total Votes</th></tr>";
-        // foreach ($rows as $candidates) {
-        //     $i++;
-        //     $candidate_id = $candidates['candidate_id'];
-        //     $candidate_name = $candidates['candidate_name'];
-        //     $candidate_manifesto = $candidates['candidate_manifesto'];
-        //     $school_id = $candidates['school_id'];
-        //     $school_name = $candidates['school_name'];
-        //     $candidate_vote = $candidates['candidate_vote'];
-        //     echo "<tr><td>$candidate_id</td><td>$candidate_name</td><td>$candidate_manifesto</td><td>$school_id</td><td>$school_name</td><td>$candidate_vote</td>
-        //     <td><button class='btn'><a href='vote.php?submit=delete&candidate_id=$candidate_id' class='fa fa-trash' onclick=\"return confirm('Are you sure?')\"></a></button>
-        //     </td></tr>";
-        // }
-        // echo "</table>";
-        ?> -->
-    </div> -->
+        $i = 0;
+        echo "<table class='w3-table w3-striped w3-bordered' style='width:100%'>
+         <tr><th style='width:8%'>Matric No</th><th style='width:15%'>User Email</th><th style='width:30%'>User Password</th><th style='width:15%'>User Name</th><th style='width:8%'>User School</th><th>User Phone</th><th>User Status</th></tr>";
+         
+        foreach ($rows as $users) {
+            $i++;
+            $matric_no = $users['matric_no'];
+            $user_email = $users['user_email'];
+            $user_pass = $users['user_pass'];
+            $user_name = $users['user_name'];
+            $user_school = $users['user_school'];
+            $user_phone = $users['user_phone'];
+            $user_status = $users['user_status'];
+
+            // echo "<tr>";
+            // echo "<td>";
+            // echo $matric_no;
+            // echo "</td><td>";
+            // echo $user_email;
+            //  echo "</td><td>";
+            // echo $user_pass;
+            // echo "</td><td>";
+            // echo $user_name;
+            // echo "</td><td>";
+            // echo $user_school;
+            // echo "</td><td>";
+            // echo $user_phone;
+            // echo "</td><td>";            
+            // echo $user_status;
+            // echo "</td><td>";    
+
+            // if($user_status == 'Unverified'){
+            // echo "<button class=' w3-theme-2 w3-round w3-block' style='width:60%;height:30px;display:inline-block' id='verify'><a href='userList.php?submit=verify&matric_no=$matric_no'>Verify </a></button> ";
+            // }
+            // echo "<button class='btn'><a href='userList.php?submit=delete&cmatric_no=$matric_no' class='fa fa-trash' onclick=\"return confirm('Are you sure?')\"></a></button>";
+            // echo "</td>";
+            // echo "</tr>";
+            echo "<tr><td>$matric_no</td><td>$user_email</td><td>$user_pass</td><td>$user_name</td><td>$user_school</td><td>$user_phone</td><td>$user_status</td>
+            <td><button class='btn'><a href='userList.php?submit=delete&cmatric_no=$matric_no' class='fa fa-trash' onclick=\"return confirm('Are you sure?')\"></a></button>
+            </td>";
+            if($user_status == 'Unverified'){
+                echo "<td><button class=' w3-theme-2 w3-round w3-block' style='width:90%;height:30px;display:inline-block' id='verify'><a href='userList.php?submit=verify&matric_no=$matric_no'>Verify </a></button></td> ";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+        ?>
+    </div>
     
     <?php
-    // $num = 1;
-    // if ($pageno == 1) {
-    //     $num = 1;
-    // } else if ($pageno == 2) {
-    //     $num = ($num) + 10;
-    // } else {
-    //     $num = $pageno * 10 - 9;
-    // }
-    // echo "<div class='w3-container w3-row'>";
-    // echo "<center>";
-    // for ($page = 1; $page <= $number_of_page; $page++) {
-    //     echo '<a href = "vote.php?pageno=' . $page . '" style=
-    //         "text-decoration: none">&nbsp&nbsp' . $page . ' </a>';
-    // }
-    // echo " ( " . $pageno . " )";
-    // echo "</center>";
-    // echo "</div>";
+    $num = 1;
+    if ($pageno == 1) {
+        $num = 1;
+    } else if ($pageno == 2) {
+        $num = ($num) + 10;
+    } else {
+        $num = $pageno * 10 - 9;
+    }
+    echo "<div class='w3-container w3-row'>";
+    echo "<center>";
+    for ($page = 1; $page <= $number_of_page; $page++) {
+        echo '<a href = "vote.php?pageno=' . $page . '" style=
+            "text-decoration: none">&nbsp&nbsp' . $page . ' </a>';
+    }
+    echo " ( " . $pageno . " )";
+    echo "</center>";
+    echo "</div>";
     ?>
     <br>
 

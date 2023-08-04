@@ -202,7 +202,7 @@ function subString($str)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="../user/css/style2.css">
+    <link rel="stylesheet" href="../admin/css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//cdn.syncfusion.com/ej2/21.2.3/ej2-base/styles/material.css" rel="stylesheet" />
     <link href="//cdn.syncfusion.com/ej2/21.2.3/ej2-buttons/styles/material.css" rel="stylesheet" />
@@ -213,20 +213,21 @@ function subString($str)
     <title>Welcome to Web-Polling System UUM MPP</title>
 </head>
 <body>
-    <div class="topnav">
-        
-        <div class="w3-container">
-            <h2>U-Vote</h2>
-        </div>
-        
-        <div class="topnav-right">
-        <a href="index.php" class="w3-bar-item w3-button w3-left">Homepage</a>
-            <a href="school.php" class="w3-hide-small ">School</a>
-            <a href="candidateList.php" class="w3-hide-small ">Candidate List</a>
-            <a href="vote.php" class="w3-hide-small ">Vote</a>
+<div class="topnav w3-row">
+  <div class="w3-col w3-container" style="width:150px;margin-left:10px;">
+  <img src="images/mpp_logo.jpeg" alt="logo" style="margin-top:10px;margin-left:10px;width:70px;height:70px"/>
+        <h2>U-Vote</h2></div>
+  <div class="w3-rest w3-container"style="padding:50px">
+    <div class="topnav-right" >
+    <a href="index.php" class="w3-bar-item w3-button w3-left fa fa-home"style="font-size:20px"> Homepage</a>
+            <a href="school.php" class="w3-hide-small fa fa-institution"style="font-size:20px"> School</a>
+            <a href="candidateList.php" class="w3-hide-small fa fa-users"style="font-size:20px"> Candidate List</a>
+            <a href="vote.php" class="w3-hide-small fa fa-check-square "style="font-size:20px"> Vote</a>
             <!-- <a href="#" class="w3-hide-small ">Profile</a> -->
-            <a href="login.php" class="w3-hide-small ">Log Out</a>
-        </div>
+            <a href="login.php" class="w3-hide-small fa fa-sign-out "style="font-size:20px"> Log Out</a>
+        
+        </div></div>
+   
     </div>
     <div id="mySidebar" class="w3-sidebar w3-bar-block w3-theme-2 w3-hide-large w3-hide-medium" style="display:none">
         <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Close &times;</button>
@@ -246,7 +247,7 @@ function subString($str)
     
         
     <form action="" method="post"  id="vote" >
-    <div class="w3-card w3-container w3-padding w3-margin w3-round">
+    <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>School of Business Management</h4>
     </div>
         <div class="w3-grid-template">
@@ -296,7 +297,7 @@ function subString($str)
         </div>
         </div>
 
-        <div class="w3-card w3-container w3-padding w3-margin w3-round">
+        <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>Islamic Business School</h4>
         </div>
 
@@ -349,7 +350,7 @@ function subString($str)
         </div>
         </div>
 
-        <div class="w3-card w3-container w3-padding w3-margin w3-round">
+        <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>School of Creative Industry Management and Performing Arts</h4>
         </div>
         <div class="w3-grid-template">
@@ -399,7 +400,7 @@ function subString($str)
         </div>
         </div>
 
-        <div class="w3-card w3-container w3-padding w3-margin w3-round">
+        <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>School of Education</h4>
         </div>
         <div class="w3-grid-template">
@@ -449,7 +450,7 @@ function subString($str)
         </div>
         </div>
         
-        <div class="w3-card w3-container w3-padding w3-margin w3-round">
+        <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>School of Government</h4>
         </div>
         <div class="w3-grid-template">
@@ -499,7 +500,7 @@ function subString($str)
         </div>
         </div>
         
-        <div class="w3-card w3-container w3-padding w3-margin w3-round">
+        <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>School of International Studies</h4>
         </div>
         <div class="w3-grid-template">
@@ -549,7 +550,7 @@ function subString($str)
         </div>
         </div>
         
-        <div class="w3-card w3-container w3-padding w3-margin w3-round">
+        <div class="w3-card w3-theme-2 w3-container w3-padding w3-margin w3-round">
         <h4>School of Law</h4>
         </div>
         <div class="w3-grid-template">
@@ -628,6 +629,6 @@ function subString($str)
     ?>
     <br>
 
-    <div class="w3-center w3-bottom w3-theme" style="max-width:1500px;margin:0 auto;">U-Vote</div>
+    <div class="w3-center w3-bottom w3-theme" style="max-width:1800px;margin:0 auto;">U-Vote</div>
 </body>
 </html>

@@ -103,12 +103,13 @@ function subString($str)
         </div>
         
         <div class="topnav-right">
-        <a href="index.php" class="w3-bar-item w3-button w3-left">Homepage</a>
-            <a href="school.php" class="w3-hide-small ">School</a>
-            <a href="candidateList.php" class="w3-hide-small ">Candidate List</a>
-            <a href="vote.php" class="w3-hide-small ">Vote</a>
+        <a href="index.php" class="w3-bar-item w3-button w3-left fa fa-home"style="font-size:20px"> Homepage</a>
+            <a href="school.php" class="w3-hide-small fa fa-institution"style="font-size:20px"> School</a>
+            <a href="candidateList.php" class="w3-hide-small fa fa-users"style="font-size:20px"> Candidate List</a>
+            <a href="userList.php" class="w3-hide-small fa fa-users"style="font-size:20px"> User List</a>
+            <a href="vote.php" class="w3-hide-small fa fa-check-square "style="font-size:20px"> Vote</a>
             <!-- <a href="#" class="w3-hide-small ">Profile</a> -->
-            <a href="login.php" class="w3-hide-small ">Log Out</a>
+            <a href="login.php" class="w3-hide-small fa fa-sign-out "style="font-size:20px"> Log Out</a>
         </div>
     </div>
     <div id="mySidebar" class="w3-sidebar w3-bar-block w3-theme-2 w3-hide-large w3-hide-medium" style="display:none">

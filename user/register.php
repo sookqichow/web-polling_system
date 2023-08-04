@@ -3,7 +3,7 @@
 include_once("dbconnect.php");
 
 if (isset($_POST['submit'])) {
-    if (!(isset($_POST["name"]) ||isset($_POST["school"]) ||isset($_POST["phone"])|| isset($_POST["email"]) ||isset($_POST["pass"]))) {
+    if (!(isset($_POST["matric_no"])||isset($_POST["name"]) ||isset($_POST["school"]) ||isset($_POST["phone"])|| isset($_POST["email"]) ||isset($_POST["pass"]))) {
         echo "<script> alert('Please fill in all required information')</script>";
         echo "<script> window.location.replace('register.php')</script>";
     } 
@@ -26,15 +26,16 @@ if (isset($_POST['submit'])) {
     //         }
     //     } 
         else {
+            $matric_no = $_POST['matric_no'];
             $email = $_POST['email'];
-            $pass = sha1($_POST['password']);
+            $pass = sha1($_POST['pass']);
             $name = $_POST['name'];
             $school = $_POST['school'];
             $phone = $_POST['phone'];
             // $sqlregisteruser = "INSERT INTO `tbl_users`(`user_email`, `user_pass`, `user_name`, 
             //     `user_school`,'user_phone') VALUES ('$email','$pass','$name','$school','$phone')";
-                $sqlregisteruser = "INSERT INTO `tbl_users`(`user_email`, `user_pass`, `user_name`, 
-                `user_school`, `user_phone`) VALUES ('$email','$pass','$name','$school','$phone')";
+                $sqlregisteruser = "INSERT INTO `tbl_users`(`matric_no`,`user_email`, `user_pass`, `user_name`, 
+                `user_school`, `user_phone`,`user_status`) VALUES ('$matric_no','$email','$pass','$name','$school','$phone','unverified')";
             try {
                 $conn->exec($sqlregisteruser);
                 echo "<script>alert('Registration successful')</script>";
@@ -85,6 +86,10 @@ if (isset($_POST['submit'])) {
                     <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload"><br>
                 </div>
                 </p> -->
+                <p>
+                    <label>Matric No</label>
+                    <Input class="w3-input w3-border w3-round" name="matric_no" id="idmatricno" type="text" required>
+                </p>
                 <p>
                     <label>Name</label>
                     <Input class="w3-input w3-border w3-round" name="name" id="idname" type="text" required>

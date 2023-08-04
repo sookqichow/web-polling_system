@@ -136,7 +136,7 @@ if (isset($_GET['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="../user/css/style1.css">
+    <link rel="stylesheet" href="../admin/css/style2.css">
     <link rel="stylesheet" href="../admin/css/slideshow.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/index.js" defer></script>
@@ -149,12 +149,12 @@ if (isset($_GET['submit'])) {
         </div>
         
         <div class="topnav-right">
-            <a href="index.php" class="w3-bar-item w3-button w3-left">Homepage</a>
-            <a href="school.php" class="w3-hide-small ">School</a>
-            <a href="candidateList.php" class="w3-hide-small ">Candidate List</a>
-            <a href="vote.php" class="w3-hide-small ">Vote</a>
+        <a href="index.php" class="w3-bar-item w3-button w3-left fa fa-home"style="font-size:20px"> Homepage</a>
+            <a href="school.php" class="w3-hide-small fa fa-institution"style="font-size:20px"> School</a>
+            <a href="candidateList.php" class="w3-hide-small fa fa-users"style="font-size:20px"> Candidate List</a>
+            <a href="vote.php" class="w3-hide-small fa fa-check-square "style="font-size:20px"> Vote</a>
             <!-- <a href="#" class="w3-hide-small ">Profile</a> -->
-            <a href="login.php" class="w3-hide-small ">Log Out</a>
+            <a href="login.php" class="w3-hide-small fa fa-sign-out "style="font-size:20px"> Log Out</a>
         </div>
         <div class="w3-theme-3">
         <button onclick="w3-open()" class="w3-button w3-right w3-hide-large w3-hide-medium">☰</button>
@@ -378,6 +378,6 @@ if (isset($_GET['submit'])) {
     ?>
     <br>
 
-    <div class="w3-center w3-bottom w3-theme" style="max-width:1500px;margin:0 auto;">U-Vote</div>
+    <div class="w3-center w3-bottom w3-theme" style="max-width:1800px;margin:0 auto;">U-Vote</div>
 </body>
 </html>

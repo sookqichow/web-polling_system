@@ -3,13 +3,29 @@
     margin: auto;
 }
 
-.w3-theme {color:#fff !important; background-color:#015fab !important}
-.w3-theme-1 {color:#000 !important; background-color:#01b9f6 !important}
-.w3-theme-2 {color:#000 !important; background-color:#8ea7c9 !important}
+.w3-theme {color:#fff !important; background-color:#3E65C2 !important}
+.w3-theme-1 {color:#000 !important; background-color:#c4dede !important}
+.w3-theme-2 {color:#000 !important; background-color:#271611 !important}
 
+
+.header img {
+    margin-left:40px;
+    margin-top:20px;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #555;
+  }
+  
+.header h1 {
+    position: relative;
+    top: 45px;
+    left: 40px;
+  }
+  
 .topnav {
     overflow: hidden;
-    background-color: #015fab;
+    background-color: #1b2d35;
     color:#fff;
   }
 
